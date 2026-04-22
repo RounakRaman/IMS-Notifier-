@@ -9,7 +9,7 @@ services:
   - type: web
     name: ims-notifier-web
     runtime: python
-    plan: free
+    plan: starter
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
@@ -38,7 +38,7 @@ services:
   - type: cron
     name: ims-notifier-daily
     runtime: python
-    plan: free
+    plan: starter
     rootDir: backend
     schedule: "30 3 * * *"  # 03:30 UTC == 09:00 IST every day
     buildCommand: pip install -r requirements.txt
