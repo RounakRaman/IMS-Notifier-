@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p class="lede">
+  Daily scrape of the IMS notifications board. New items matching your watchlist are dispatched
+  by email and push to all registered devices.
+</p>
+
+<div class="stats" style="margin-top: 28px;">
+  <div class="stat">
+    <div class="n">{{ keywords|length }}</div>
+    <div class="l">keyword{{ "" if keywords|length == 1 else "s" }} watched</div>
+  </div>
+  <div class="stat">
+    <div class="n">{{ device_count }}</div>
+    <div class="l">device{{ "" if device_count == 1 else "s" }} subscribed</div>
+  </div>
+  <div class="stat">
+    <div class="n">{{ recent|length }}</div>
+    <div class="l">recent match{{ "" if recent|length == 1 else "es" }}</div>
+  </div>
+</div>
+
+<h2>Watchlist <span class="count">// add / remove keywords</span></h2>
+<div class="card">
+  <form method="post" action="/keywords" class="row" style="margin-bottom: 18px;">
+    <input type="text" name="keyword" placeholder="e.g. CVSPK" required autocomplete="off" />
+    <button type="submit">Add Keyword</button>
+  </form>
+
+  {% if keywords %}
+    <ul class="tags">
+      {% for k in keywords %}
+      <li>
+        <span class="kw">{{ k }}</span>
+        <form method="post" action="/keywords/delete" class="inline">
+          <input type="hidden" name="keyword" value="{{ k }}" />
+          <button type="submit" class="danger" title="Remove">&times;</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="empty">No keywords yet. Add one above to start watching.</div>
+  {% endif %}
+</div>
+
+<h2>Recent Matches <span class="count">// last 30, newest first</span></h2>
+{% if recent %}
+<table class="feed">
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>Keyword</th>
+      <th>Notification</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for n in recent %}
+    <tr>
+      <td class="date">{{ n.date or "&mdash;" | safe }}</td>
+      <td>{% if n.matched_keyword %}<span class="kw-pill">{{ n.matched_keyword }}</span>{% endif %}</td>
+      <td>{{ n.text }}</td>
+      <td>{% if n.link %}<a href="{{ n.link }}" target="_blank" rel="noopener">open &rarr;</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="card empty">
+  No matches yet. The cron job runs once daily; after the first run with live keywords, hits will appear here.
+</div>
+{% endif %}
+
+<h2>Controls <span class="count">// maintenance</span></h2>
+<div class="card">
+  <form method="post" action="/api/check" class="inline" onsubmit="return confirm('Run a manual check now? This will fetch the IMS page and send any new matches.')">
+    <button type="submit">Run Check Now</button>
+  </form>
+  <form method="post" action="/logout" class="inline" style="margin-left: 10px;">
+    <button type="submit" class="ghost">Log Out</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+# Render Blueprint: deploys both the web dashboard and the daily cron job.
+# Usage: push this repo to GitHub, click "New +" -> "Blueprint" in Render,
+# connect the repo, Render will read this file and create both services.
+#
+# You must set secrets (DATABASE_URL, SMTP_*, FCM_SERVICE_ACCOUNT_JSON,
+# ADMIN_PASSWORD) in the Render dashboard after the services are created.
+
+services:
+  - type: web
+    name: ims-notifier-web
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: EMAIL_TO
+        value: raman.rounak@gmail.com
+      - key: EMAIL_FROM_NAME
+        value: IMS Notifier
+      - key: FCM_SERVICE_ACCOUNT_JSON
+        sync: false
+
+  - type: cron
+    name: ims-notifier-daily
+    runtime: python
+    plan: free
+    rootDir: backend
+    schedule: "30 3 * * *"  # 03:30 UTC == 09:00 IST every day
+    buildCommand: pip install -r requirements.txt
+    startCommand: python check.py
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: EMAIL_TO
+        value: raman.rounak@gmail.com
+      - key: EMAIL_FROM_NAME
+        value: IMS Notifier
+      - key: FCM_SERVICE_ACCOUNT_JSON
+        sync: false

@@ -1,0 +1,7 @@
+<resources>
+    <color name="ink">#0A0A0A</color>
+    <color name="paper">#F4F1EA</color>
+    <color name="paper_dim">#E8E3D6</color>
+    <color name="accent">#C7391F</color>
+    <color name="muted">#6B6558</color>
+</resources>

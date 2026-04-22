@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<p class="lede">This dashboard is private. Enter the admin password to continue.</p>
+
+<div class="card" style="max-width: 460px;">
+  {% if error %}<div class="flash">{{ error }}</div>{% endif %}
+  <form method="post" action="/login" class="row">
+    <input type="password" name="password" placeholder="Password" required autofocus />
+    <button type="submit">Enter</button>
+  </form>
+</div>
+{% endblock %}

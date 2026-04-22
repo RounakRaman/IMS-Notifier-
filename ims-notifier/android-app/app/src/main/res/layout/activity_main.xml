@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/paper">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_brand"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/ink"
+            android:letterSpacing="-0.02"
+            android:layout_marginTop="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/ink"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_starting"
+            android:textColor="@color/accent"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.08"
+            android:textAllCaps="true"
+            android:padding="12dp"
+            android:background="@drawable/card_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backend_label"
+            android:textColor="@color/muted"
+            android:fontFamily="monospace"
+            android:textSize="11sp"
+            android:letterSpacing="0.1"
+            android:textAllCaps="true"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/backendUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ink"
+            android:fontFamily="monospace"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            tools:text="https://ims-notifier-web.onrender.com" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/token_label"
+            android:textColor="@color/muted"
+            android:fontFamily="monospace"
+            android:textSize="11sp"
+            android:letterSpacing="0.1"
+            android:textAllCaps="true"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tokenPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ink"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            tools:text="e7Fd0..." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/refreshButton"
+                style="?attr/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/refresh"
+                android:backgroundTint="@color/ink"
+                android:textColor="@color/paper"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.1"
+                android:textStyle="bold" />
+
+            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/openDashboardButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/open_dashboard"
+                android:backgroundTint="@color/accent"
+                android:textColor="@android:color/white"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.1"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Latest-received notification card -->
+        <LinearLayout
+            android:id="@+id/latestCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="32dp"
+            android:padding="16dp"
+            android:background="@drawable/card_bg"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/latest_match"
+                android:textColor="@color/muted"
+                android:fontFamily="monospace"
+                android:textSize="11sp"
+                android:letterSpacing="0.1"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/latestDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"
+                tools:text="14-04-2026" />
+
+            <TextView
+                android:id="@+id/latestText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ink"
+                android:textSize="16sp"
+                android:layout_marginTop="6dp"
+                tools:text="Notification body goes here..." />
+
+            <TextView
+                android:id="@+id/latestLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/accent"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"
+                android:autoLink="web"
+                android:visibility="gone"
+                tools:text="https://www.imsnsit.org/..." />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

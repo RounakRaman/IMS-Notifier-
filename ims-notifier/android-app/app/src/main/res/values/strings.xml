@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">IMS Notifier</string>
+    <string name="app_brand">IMS·NOTIFIER</string>
+    <string name="status_starting">Starting up…</string>
+    <string name="status_fetching">Fetching FCM token…</string>
+    <string name="status_fcm_failed">Couldn\'t get FCM token. Retry.</string>
+    <string name="status_registered">Registered. You\'ll get pushes.</string>
+    <string name="status_backend_failed">Got token, backend unreachable.</string>
+    <string name="backend_label">Backend</string>
+    <string name="token_label">Device token (preview)</string>
+    <string name="refresh">Retry</string>
+    <string name="open_dashboard">Open Dashboard</string>
+    <string name="latest_match">Latest match</string>
+</resources>
