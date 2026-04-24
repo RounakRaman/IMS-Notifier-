@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1042867308829",
+    "project_id": "ims-notifier",
+    "storage_bucket": "ims-notifier.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042867308829:android:eb47b74ee033bf2c1cf9f4",
+        "android_client_info": {
+          "package_name": "com.rounak.imsnotifier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqvMsFW9c3js7R027KrmBsyjvSYoahvm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
